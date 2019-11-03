@@ -1,35 +1,43 @@
-#include <iostream>
-#include<stdio.h>
-#include<vector>
+#include<iostream>
 using namespace std;
+const int N=1e5+10;
+
 int main() {
-    freopen("BookReading.in", "r",stdin); //输入重定向，输入数据将从D盘根目录下的in.txt文件中读取 
-    // freopen("BookReading.out", "w",stdout); //输出重定向，输出数据将保存在D盘根目录下的out.txt文件中 
-    int num, page_num, torn_page, reader;
-    vector<int> torn_pages;
-    vector<int> readers;
-    int i = 0;
-    cin >> num;
-    int temp;
-    while (i < num) {
-        scanf("%d%d%D", &page_num, & torn_page, &reader);
+	//freopen("BookReading.in", "r",stdin);
+    int t, n, m ,q, r;
+    int page[N], ans[N];
+    long long res = 0;
+    scanf("%d", &t);
+    for (int cas = 1; cas <= t; cas++) {
+        scanf("%d%d%d", &n, &m, &q);
+        for (int j = 1; j <= n;j++) {
+            page[j] = 1;
+        }
+        int torn;
+        for (int j = 1; j <= m; j++) {
+            scanf("%d", &torn);
+            page[torn] = 0;
+        }
         
-        // 读取一行
-        // getchar();
-        while (cin.get() != '\n') {
-            cin >> temp;
-            torn_pages.push_back(temp);
+		// for (int j = 1; j <= n; j++) {
+        //     for (int k = j; k <= n; k += j) {
+        //         ans[j] += page[k];
+        //     } 
+        // }
+        // for (int j = 0; j < q; j++){
+        //     scanf("%d", &r);
+        //     res += ans[r];
+        // }
+
+		for(int i=1;i<=n;i++) for(int j=i;j<=n;j += i) ans[i]+=page[j];
+		long long sum=0;
+		for(int i=1;i<=q;i++) scanf("%d",&r),sum+=ans[r];
+		
+		printf("Case #%d: %lld\n", cas, sum);
+		for (int j = 1; j <= n;j++) {
+            page[j] = 0;
+			ans[j] = 0;
         }
-        while (cin.get() != '\n') {
-            cin >> temp;
-            readers.push_back(temp);
-        }
-        for (int k = 0; k < torn_pages.size(); k++) {
-            cout << torn_pages[i] << " ";
-        }
-        cout << endl;
-        torn_pages.clear();
-        readers.clear();
-        i++;
     }
 }
+            
