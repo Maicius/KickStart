@@ -1,6 +1,8 @@
 #include<iostream>
 using namespace std;
-
+/**
+ * 给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。
+ */ 
 class Solution {
 public:
 
@@ -67,5 +69,27 @@ public:
         }
         return s.substr(start, maxLen);
     }
+
+    //动态规划
+    string longestPalindrome3(string s) {
+        int dp[1000][1000] = {0};
+        int size = s.size();
+        if (size <= 1) return s;
+        int longest = 1;
+        string longest_str = s.substr(0, 1);
+        for (int r = 1; r < size; r++) {
+            for (int l = 0; l < r; l++) {
+                if (s[l] == s[r] && (r - l <= 2 || dp[l + 1][r - 1])) {
+                    dp[l][r] = 1;
+                    if (r - l + 1 > longest) {
+                        longest = r - l + 1;
+                        longest_str = s.substr(l, r - l + 1);
+                    }
+                }
+            }
+        }
+        return longest_str;
+    }
+
     
 };
