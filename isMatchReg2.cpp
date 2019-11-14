@@ -17,6 +17,7 @@ public:
         int s_len = s.size();
         int p_len = p.size();
         if (p_len == 0) return s_len == 0;
+        // 这种初始化的方式比vector更快
         bool dp[s_len + 1][p_len + 1];
         for (int i = 0; i <= s_len; i++) {
             for(int j = 0; j <= p_len;j ++) {
