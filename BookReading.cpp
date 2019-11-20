@@ -3,7 +3,7 @@ using namespace std;
 const int N=1e5+10;
 
 int main() {
-	//freopen("BookReading.in", "r",stdin);
+	freopen("BookReading.in", "r",stdin);
     int t, n, m ,q, r;
     int page[N], ans[N];
     long long res = 0;
