@@ -8,10 +8,12 @@
       TreeNode *right;
       TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
- 
+
+long last = INT32_MIN;
+bool flag = true;
+
 class Solution {
-    long last = LONG_MIN;
-    bool flag = true;
+
 public:
     bool isValidBST(TreeNode* root) {
         if (!root) return true;
