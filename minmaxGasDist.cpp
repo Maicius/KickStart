@@ -15,7 +15,9 @@ public:
         mxDiff = max(mxDiff, stations[i] - stations[i - 1]);
         double start = floor(mxDiff / (K + 1));
         double end = ceil(mxDiff);
-
+        /**
+         * 二分查找，查找的目标是在满足count <= K的情况下，最小化距离
+         */ 
         while (abs(start - end) > 1e-6) {
             double mid = start + (end - start) / 2;
             int count = 0;
