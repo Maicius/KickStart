@@ -21,7 +21,7 @@ public:
         children = _children;
     }
 };
-
+//前序遍历生成字符串，栈迭代生成树
 class Codec {
 public:
 
